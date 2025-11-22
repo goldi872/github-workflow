@@ -1,19 +1,17 @@
-// filepath: 
-# ...existing code...
 name: show commit message
 on:
   push:
-    branches:
-      - main
-jobs:
-  print-commit-message:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      branches:
+        - main
 
-      - name: Show commit message
-        run: |
-          echo "Commit message:"
-          git --no-pager log -1 --pretty="%B" || echo "No commit message found"
-# ...existing code...
+jobs: 
+    print-commit-message:
+        runs-on: ubuntu-latest
+        steps:
+          - name:  Checkout repository
+            uses: actions/checkout@v3
+
+          - name: print  commit message
+            run: |
+             echo "Commit message"
+              echo "${{ github.event.head_commit.message }}"
